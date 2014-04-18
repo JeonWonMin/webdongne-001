@@ -20,7 +20,10 @@
 	<script>
 		window.onload=function(){	
 			// 문서 전체에서 target 클래스이름이 적용된 엘리먼트 찾기.
-			
+			var contentData = window.document.getElementsByClassName("content_data");
+			for (var i=0; contentData.length; i++) {
+    			contentData[i].style.border = "4px solid #ff0000";
+			}
 		}
 	</script>
 </head>
