@@ -17,12 +17,12 @@
 	<script>
 		window.onload=function(){
 			//  기준이되는 #content를 구한후.
-			
+			var content = window.document.getElementById("content");
 			// content노드에서 형제노드인 #header 접근하기.
-			
+			content.previousSibling.previousSibling.style.border = "4px solid #ff0000";
 			// content노드에서 형제노드인 #footer 접근하기.
-			
-			
+			content.nextSibling.nextSibling.style.border = "4px solid #ff0000";
+
 		}
 	</script>
 </head>
