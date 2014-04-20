@@ -20,11 +20,11 @@
 	<script>
 		window.onload=function(){
 			//1. 지우려고 하는 노드를 가진 부모노를 찾습니다.
-		
+            var page = document.getElementById("sample_page");
 			//2. 지우려는 노드를 찾습니다.
-			
+			var content = document.getElementById("content");
 			//3. 부모노드의 removeChild메소드를 이용해서 노드를 삭제합니다.
-			
+			page.removeChild(content);
 		}
 	</script>
 </head>
