@@ -20,13 +20,14 @@
 	<script>
 		window.onload=function(){
 			//1. 이미 생성되어 있는 노드중 이동시킬 대상을 찾습니다.
-					
+			var header = document.getElementById("header")		;
 					
 			//2.이동위치의 노드를 구합니다.
-			
+			var content = document.getElementById("content");
 			
 			//3.header을 content의 자식노드로 이동시킵니다.
-			
+			content.appendChild(header);
+			header.style.border = "4px solid #ff0000";
 		}
 	</script>
 </head>
