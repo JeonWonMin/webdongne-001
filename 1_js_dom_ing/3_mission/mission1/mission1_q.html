@@ -27,25 +27,57 @@
 	</style>
 	<script>
 		window.onload=function(){
-			
+            solveM1();
+            solveM2();
+            solveM3();
+            solveM4();
+            solveM5();
+            solveM6();
 		}
 		
-		function solveM1(){	
+		function solveM1(){
+		    var m_1 = document.getElementById("m_1");
+		    m_1.style.color = "#ff0000";
 		}
 		
 		function solveM2(){
+		    var m_2 = document.getElementById("m_2");
+		    m_2.className = "active";
 		}
 		
 		function solveM3(){
+		    var m_3 = document.getElementById("m_3"),
+		        m_3_img = m_3.getElementsByTagName("img");
+		    
+		        m_3_img[0].setAttribute("src", "ch3.png");
 		}
 		
 		function solveM4(){
+		    var m_4 = document.getElementById("m_4"),
+		        p4 = document.createElement("p");
+		    p4.innerHTML = "항목4";    
+            m_4.appendChild(p4);
 		}
 	
 		function solveM5(){
+		    var m5 = document.getElementById("m_5");
+		    var el_p = m5.getElementsByTagName("p");
+		    
+		    for(var i = 0; i < el_p.length; i++) {
+    		    var p = el_p[i];
+    		    
+    		    var txt = p.firstChild.nodeValue;
+    		    
+    		    if(txt.indexOf("항목4") != -1) {
+        		    m5.removeChild(p);
+        		    break;
+    		    }
+		    }
 		}
 				
-		function solveM6(){	
+		function solveM6(){
+		    var m6 = document.getElementById("m_6");
+		    document.body.removeChild(m6.parentNode);
 		}
 	</script>
 </head>
