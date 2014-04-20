@@ -18,15 +18,17 @@
 		window.onload=function(){
 			var page = document.getElementById("sample_page");
 			// 첫번째 영역에 추가하기.
-				
+			page.innerHTML = "<p style='border:4px solid #ff0000;'>추가내용1</p>" + page.innerHTML;	
 				
 				
 			// 두번째 영역에 추가하기.
-			
-			
+			var content = document.getElementById("content");
+			var div = window.document.createElement("div");
+			div.innerHTML = "생성할 노드가 많은 경우 <span class='myStyle'>어떤 방법을</span> 써야 할까요?";
+			page.insertBefore(div, content);
 			
 			// 세번째 영역에 추가하기.
-		
+            page.innerHTML += "<p style='border:4px solid #ff0000'>추가내용2</p>";
 		}
 	</script>
 </head>
