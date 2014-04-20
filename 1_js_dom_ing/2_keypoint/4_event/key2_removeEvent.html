@@ -21,15 +21,34 @@
 	<script>
 		
 		window.onload=function(){
-			
-		}		
+			var output = document.getElementById("btn_target"),
+			    btn_1 = document.getElementById("btn1"),
+			    btn_2 = document.getElementById("btn2");
+			    
+            //btn_1.addEventListener("click", on_ClickAdd, false);
+            //btn_2.addEventListener("click", on_ClickRemove, false);
+            
+            btn_1.onclick = on_ClickAdd;
+            btn_2.onclick = null;
+        
+            function on_ClickAdd() {
+                output.innerHTML = "Add~!";
+            }
+            
+            function on_ClickRemove() {
+                output.innerHTML = "Remove~!";
+            }
+            
+		}
+		
+		
 		
 	</script>
 </head>
 
 <body>
-		<button onClick="on_ClickAdd(event)" >이벤트등록</button>
-        <button onClick="on_ClickRemove(event)">이벤트제거</button>
+		<button id="btn1">이벤트등록</button>
+        <button id="btn2">이벤트제거</button>
         <div>
         	<button id="btn_target">이곳에 마우스를 올려보세요.</button>
         </div>
