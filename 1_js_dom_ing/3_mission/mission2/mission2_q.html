@@ -20,15 +20,89 @@
 		}
 		
 		#panel {
-			width:600px;
-			overflow:visible;		
+		    overflow:hidden;
+		    word-break: break-all;
+		}
+		
+		#panel span {
+    		margin-right:4px;
 		}
 		
 	</style>
-	<script>	
+	<script>
+	    /*
 		window.onload=function(){
+            var panel = document.getElementById("panel"),
+                intervalId,
+                num = 1;
+            
+            function writeNumber() {
+            
+                var newSpan = null;
+                var newText = null;
+                
+                newSpan = document.createElement("span");
+                newText = document.createTextNode(num);
+                newSpan.appendChild(newText);
+                panel.appendChild(newSpan);
+                
+                newSpan.style.fontSize = (10 + parseInt(Math.random()*40)) + "px";
+                newSpan.style.color = "#" + (parseInt(Math.random()*0xffffff)).toString(16);
+                
+                if(num < 50) {
+                    num++;
+                }else if(num === 50) {
+                    clearInterval(intervalId);
+                }
+                
+            }
+            
+            intervalId = setInterval(writeNumber, 20);
+            
+		}
+		*/
+		var nCount = 0,
+		    panel = null,
+		    intervalId;
+		window.onload = function() {
+    		// 초기화
+    		this.init();
+    		// 타이머 시작
+    		this.start();
+		}
 		
-		}	
+		// 초기화
+		function init() {
+    		// 1. 새로 생성할 span 태그를 추가할 부모 노드를 찾기
+    		this.panel = document.getElementById("panel");
+		}
+		
+		// 타이머 시작
+		function start() {
+    		// 2. 0.02초마다 addTag 함수를 실행하는 타이머를 실행
+    		intervalId = setInterval(this.addTag, 20);
+		}
+		
+		// 새로운 span 요소 생성
+		function addTag() {
+    		this.nCount++;
+    		// 3. 새로운 span 태그를 생성
+    		var span = document.createElement("span");
+    		// 4. 글자 크기와 글자 색을 무작위로 설정
+    		span.style.color = "#" + (parseInt(Math.random()*0xffffff)).toString(16);
+    		span.style.fontSize = (10 + parseInt(Math.random()*40)) + "px";
+    		// 5. span 태그의 display 방식을 inline-block 으로 만듬
+    		span.style.display = "inline-block";
+    		// 6. 숫자값을 span의 내부 텍스트 값으로 설정
+    		span.innerHTML = this.nCount;
+    		// 7. 신규로 생성한 span 태그를 부모 노드에 추가
+    		this.panel.appendChild(span);
+    		// 8. 추가되는 내용을 확인하기 위해 스크롤
+    		//this.window.scrollTo(0, window.document.body.scrollHeight);
+    		if(nCount == 50) {
+        		clearInterval(intervalId);
+    		}
+		}
 	</script>
 </head>
 
