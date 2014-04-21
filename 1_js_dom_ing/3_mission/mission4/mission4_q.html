@@ -38,19 +38,91 @@
 	</style>
 	
 	<script>
+	    var nEndX,
+	        nCurrentX,
+	        nStartX,
+	        nTimerID,
+	        nStep,
+	        objIMG;
+	        
 		window.onload=function(){
+		    // 요소 초기화
+		    this.init();
+		    // 이벤트 초기화
 			this.initEventListener();
 		}
 		
 		function initEventListener(){
 			document.getElementById("btn_start").addEventListener("click",function(){
-				alert("시작");
+				//alert("시작");
+				start();
 			},false);
 			
 			document.getElementById("btn_stop").addEventListener("click",function(){
-				alert("멈춤");
+				//alert("멈춤");
+				stopMove();
 			},false);
-		}		
+		}
+		
+		function init() {
+    		var objBar = document.getElementById("bar");
+    		
+    		// 시작 위치 파악
+    		nStartX = objBar.offsetLeft;
+    		
+    		// 마지막 위치(시작 위치 + bar의 너비 - 이미지 너비)
+    		nEndX = objBar.clientWidth;
+    		nEndX += nStartX;
+    		nEndX -= 128;
+    		
+    		// 이미지의 현재 위치를 시작 위치로 설정
+    		nCurrentX = nStartX;
+    		
+    		nStep = 2;
+    		nTimerID = 0;
+    		
+    		objIMG = document.getElementById("img1");
+		}
+		
+		// 타이머 실행
+		function start() {
+    		if(nTimerID == 0) {
+        		nTimerID = setInterval(startMove, 10);
+    		}
+		}
+		
+		// 이미지 움직이기
+		function startMove() {
+    		// nStep만큼 이동
+    		nCurrentX += nStep;
+    		
+    		// 위치 값이 마지막 위치 값을 넘어가는 순간,
+    		// 마지막 위치에서 시작 위치로 이동할 수 있게 방향을 바꾼다
+    		if(nCurrentX > nEndX) {
+        		nCurrentX = nEndX;
+        		nStep = -2;
+        		objIMG.style.webkitTransform = "rotateY(-180deg)";
+    		}
+    		
+    		// 위치 값이 시작 위치 값을 넘어가는 순간,
+    		// 시작 위치에서 마지막 위치로 이동할 수 있게 방향을 바꾼다
+    		if(nCurrentX < nStartX) {
+        		nCurrentX = nStartX;
+        		nStep = 2;
+        		objIMG.style.webkitTransform = "rotateY(0deg)";
+    		}
+    		
+    		// 최종적으로 조절된 위치 값을 left에 적용한다
+    		objIMG.style.left = nCurrentX + "px";
+		}
+		
+		// 타이머 정지시키기
+		function stopMove() {
+    		if(nTimerID != 0) {
+        		clearInterval(nTimerID);
+        		nTimerID = 0;
+    		}
+		}
 	</script>
 </head>
 
