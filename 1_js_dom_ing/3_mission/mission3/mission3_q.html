@@ -20,7 +20,38 @@
 		
 	</style>
 	<script>
+	    var panel = null,
+	        nIntervalId,
+	        count = 0;
+	    
 		window.onload=function(){
+            init();
+            start();
+		}
+		
+		function init() {
+    		panel = document.getElementById("panel");
+    		img = document.getElementById("img1")
+		}
+		
+		function start() {
+    		nIntervalId = setInterval(rolling, 1000);
+		}
+		
+		function rolling() {
+    		count++;
+    		
+    		img1.src = "images/img" + count + ".jpg";
+    		if(count == 9) {
+    		    clearTimer();
+    		    count = 0;
+    		    start();
+    		}
+    		console.log(img1.getAttribute("src"));
+		}
+		
+		function clearTimer() {
+    		clearInterval(nIntervalId);
 		}
 	</script> 
 
