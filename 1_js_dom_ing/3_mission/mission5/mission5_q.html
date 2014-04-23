@@ -30,20 +30,58 @@
 			width:600px;
 		}
 	</style>
-	<script>	
+	<script>
+	    var image_view,
+	        image_viewChildren,
+	        startPos,
+	        posY,
+	        distance,
+	        intervalID;
+	        
 		window.onload=function(){
-			this.initEventListener();
+		    image_view = document.getElementById("image_view");
+    		image_viewChildren = image_view.getElementsByTagName("img");
+    		distance = image_view.clientHeight;
+    		
+		    init();
+			initEventListener();
 		}
 		
 		function initEventListener(){
 			document.getElementById("btn_start").addEventListener("click",function(){
-				alert("시작");
+				scrollStart();
 			},false);
 			
 			document.getElementById("btn_stop").addEventListener("click",function(){
-				alert("멈춤");
+				scrollEnd();
 			},false);		
-		}		
+		}
+		
+		function init() {
+    		posY = 0;
+    		image_view.scrollTop = 0;
+		}
+		
+		function scrollStart() {
+    		intervalID = setInterval(scrollImage, 500);
+		}
+		
+		function scrollImage() {
+		    
+    		posY += distance;
+    		image_view.scrollTop += distance;   
+    		
+    		if(posY == (image_viewChildren.length * distance)) {
+        		init();
+    		}
+    	    
+    	    console.log("posY: " + posY + " image_view.scrollTop: " + image_view.scrollTop);
+    	    	
+		}
+		
+		function scrollEnd() {
+    		clearInterval(intervalID);
+		}
 	</script>
 </head>
 
