@@ -33,15 +33,18 @@
 	<script>
 	    var image_view,
 	        image_viewChildren,
+	        image_viewHeight,
 	        startPos,
-	        posY,
+	        endPos,
 	        distance,
 	        intervalID;
 	        
 		window.onload=function(){
 		    image_view = document.getElementById("image_view");
     		image_viewChildren = image_view.getElementsByTagName("img");
-    		distance = image_view.clientHeight;
+    		image_viewHeight = image_view.clientHeight;
+    		endPos = image_viewHeight * (image_viewChildren.length);
+    		distance = 1;
     		
 		    init();
 			initEventListener();
@@ -58,24 +61,27 @@
 		}
 		
 		function init() {
-    		posY = 0;
+		    startPos = 0;
     		image_view.scrollTop = 0;
 		}
 		
 		function scrollStart() {
-    		intervalID = setInterval(scrollImage, 500);
+    		intervalID = setInterval(scrollImage, 10);
 		}
 		
 		function scrollImage() {
 		    
-    		posY += distance;
+    		startPos += distance;
     		image_view.scrollTop += distance;   
     		
-    		if(posY == (image_viewChildren.length * distance)) {
-        		init();
+    		if(((image_viewChildren.length - 1) * image_viewHeight) == startPos) {
+        		distance = -1;
+    		}
+    		if(startPos == 0) {
+        		distance = 1;
     		}
     	    
-    	    console.log("posY: " + posY + " image_view.scrollTop: " + image_view.scrollTop);
+    	    console.log("startPos: " + startPos + " image_view.scrollTop: " + image_view.scrollTop);
     	    	
 		}
 		
