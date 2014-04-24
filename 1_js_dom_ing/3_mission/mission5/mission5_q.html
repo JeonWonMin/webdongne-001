@@ -43,7 +43,7 @@
 		    image_view = document.getElementById("image_view");
     		image_viewChildren = image_view.getElementsByTagName("img");
     		image_viewHeight = image_view.clientHeight;
-    		endPos = image_viewHeight * (image_viewChildren.length);
+    		endPos = image_viewHeight * (image_viewChildren.length - 1);
     		distance = 1;
     		
 		    init();
@@ -71,10 +71,21 @@
 		
 		function scrollImage() {
 		    
-    		startPos += distance;
-    		image_view.scrollTop += distance;   
-    		
-    		if(((image_viewChildren.length - 1) * image_viewHeight) == startPos) {
+		    startPos += distance;
+            image_view.scrollTop += distance;
+            
+            var restart = function() {
+                if(intervalID) {
+                    clearInterval(intervalID);
+                };
+                intervalID = setTimeout(scrollStart, 1000);
+            }
+		    
+    		if( (startPos % image_viewHeight) == 0 ) {
+    		    clearTimeout(intervalID);
+        		restart();
+    		}
+    		if(startPos == endPos) {
         		distance = -1;
     		}
     		if(startPos == 0) {
