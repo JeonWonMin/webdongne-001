@@ -55,7 +55,7 @@
 				scrollStart();
 			},false);
 			
-			document.getElementById("btn_stop").addEventListener("click",function(){
+			document.getElementById("btn_end").addEventListener("click",function(){
 				scrollEnd();
 			},false);		
 		}
@@ -95,7 +95,6 @@
     	    console.log("startPos: " + startPos + " image_view.scrollTop: " + image_view.scrollTop);
     	    	
 		}
-		
 		function scrollEnd() {
     		clearInterval(intervalID);
 		}
@@ -120,7 +119,7 @@
 		</div>
 		<div id="nav">
 			<button id="btn_start">시작</button>
-			<button id="btn_stop">멈춤</button>
+			<button id="btn_end">멈춤</button>
 		</div>
 	</div>     
 </body>
